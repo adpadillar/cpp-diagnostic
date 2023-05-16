@@ -4,16 +4,17 @@
 
 using namespace std;
 
-Hotel::Hotel(string name, int size) {
+Hotel::Hotel(string name) {
+    this->size = 50;
     this->nombre = name;
     for (int i = 0; i < size; i++) {
-        Habitacion r(i + 1);  // Start rooms from 1
-        habitaciones.push_back(r);
+        Habitacion r(i + 100);  // Start rooms from 100
+        habitaciones[i] = r;
     }
 };
 
 int Hotel::check_in(string guest_name, int adult_count, int child_count, double credit) {
-    for (int i = 0; i < habitaciones.size(); i++) {
+    for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_disponible()) {
@@ -26,20 +27,24 @@ int Hotel::check_in(string guest_name, int adult_count, int child_count, double 
 }
 
 bool Hotel::check_out(int number) {
-    if ((int)habitaciones.size() - number >= 0 && number > 0) {
-        Habitacion& r = habitaciones[number - 1];
+    for (int i = 0; i < size; i++) {
+        Habitacion& r = habitaciones[i];
 
-        return r.check_out();
+        if (r.get_numero() == number) {
+            return r.check_out();
+        }
     }
 
     return false;
 }
 
 bool Hotel::realizar_cargos_habitacion(int number, double charge) {
-    if ((int)habitaciones.size() - number >= 0 && number > 0) {
-        Habitacion& r = habitaciones[number - 1];
+    for (int i = 0; i < size; i++) {
+        Habitacion& r = habitaciones[i];
 
-        return r.realizar_cargo(charge);
+        if (r.get_numero() == number && !r.get_disponible()) {
+            return r.realizar_cargo(charge);
+        }
     }
 
     return false;
@@ -48,7 +53,7 @@ bool Hotel::realizar_cargos_habitacion(int number, double charge) {
 int Hotel::get_total_tarifa_base() {
     int total = 0;
 
-    for (int i = 0; i < habitaciones.size(); i++) {
+    for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         total += r.get_tarifa_base();
@@ -60,7 +65,9 @@ int Hotel::get_total_tarifa_base() {
 void Hotel::imprime_ocupacion() {
     cout << "Ocupacion en el Hotel " << nombre << endl;
 
-    for (int i = 0; i < habitaciones.size(); i++) {
-        cout << habitaciones[i].to_string() << endl;
+    for (int i = 0; i < size; i++) {
+        if (!habitaciones[i].get_disponible()) {
+            cout << habitaciones[i].to_string() << endl;
+        }
     }
 }

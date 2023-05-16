@@ -7,11 +7,12 @@
 
 class Hotel {
     private:
-        std::vector<Habitacion> habitaciones;
+        Habitacion habitaciones[50];
+        int size;
         std::string nombre;
 
     public:
-        Hotel(std::string name, int size);
+        Hotel(std::string name);
 
         int check_in(std::string guest_name, int adult_count, int child_count, double credit);
         bool check_out(int number);
