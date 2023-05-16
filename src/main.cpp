@@ -4,66 +4,66 @@
 
 using namespace std;
 
-class Room {
+class Habitacion {
     private:
-        int number;
-        string guest_name;
-        int adult_count;
-        int child_count;
-        double credit;
-        double charges;
-        bool available;
+        int numero;
+        string nombre;
+        int adultos;
+        int infantes;
+        double credito;
+        double cargo;
+        bool disponible;
 
     public:
-        Room() {
-            guest_name = "";
-            number = 0;
-            adult_count = 0;
-            child_count = 0;
-            credit = 0;
-            charges = 0;
-            available = true;
+        Habitacion() {
+            nombre = "";
+            numero = 0;
+            adultos = 0;
+            infantes = 0;
+            credito = 0;
+            cargo = 0;
+            disponible = true;
         }
 
-        Room(int n) {
-            guest_name = "";
-            number = n;
-            adult_count = 0;
-            child_count = 0;
-            credit = 0;
-            charges = 0;
-            available = true;
+        Habitacion(int n) {
+            nombre = "";
+            numero = n;
+            adultos = 0;
+            infantes = 0;
+            credito = 0;
+            cargo = 0;
+            disponible = true;
         }
 
-        int get_number() {
-            return number;
+        int get_numero() {
+            return numero;
         }
 
-        bool get_available() {
-            return available;
+        bool get_disponible() {
+            return disponible;
         }
 
-        Room check_in(string guest_name, int adult_count, int child_count, double credit) {
-            this->guest_name = guest_name;
-            this->adult_count = adult_count;
-            this->child_count = child_count;
-            this->credit = credit;
-            this->charges = 0;
+        Habitacion check_in(string guest_name, int adult_count, int child_count, double credit) {
+            this->nombre = guest_name;
+            this->adultos = adult_count;
+            this->infantes = child_count;
+            this->credito = credit;
+            this->cargo = 0;
 
-            this->available = false;
+            this->disponible = false;
 
             return *this;
         }
 
         bool check_out() {
-            if (!available) {
-                guest_name = "";
-                adult_count = 0;
-                child_count = 0;
-                credit = 0;
-                charges = 0;
+            if (!disponible) {
+                nombre = "";
+                adultos = 0;
+                infantes = 0;
+                credito = 0;
+                cargo = 0;
                 
-                available = true;
+                disponible = true;
 
                 return true;
             }
@@ -72,15 +72,15 @@ class Room {
         }
 
         int get_tarifa_base() {
-            return (adult_count * 450) + (child_count * 150);
+            return (adultos * 450) + (infantes * 150);
         }
 
-        bool make_charge(double charge) {
+        bool realizar_cargo(double charge) {
             if (charge > 0) {
-                double new_credit = credit - charge;
+                double new_credit = credito - charge;
 
                 if (new_credit > 0) {
-                    credit = new_credit;
+                    credito = new_credit;
                     return true;
                 }
 
@@ -93,7 +93,7 @@ class Room {
         string to_string() {
             ostringstream ss;
 
-            ss << number << ",Huesped:" << guest_name << ",Tarifa Base:" << get_tarifa_base() << ",Credito:" << credit << ",Cargos:" << charges;
+            ss << numero << ",Huesped:" << nombre << ",Tarifa Base:" << get_tarifa_base() << ",Credito:" << credito << ",Cargos:" << cargo;
 
             return ss.str();
         }
@@ -101,25 +101,25 @@ class Room {
 
 class Hotel {
     private:
-        vector<Room> rooms;
-        string name;
+        vector<Habitacion> habitaciones;
+        string nombre;
 
     public:
         Hotel(string name, int size) {
-            this->name = name;
+            this->nombre = name;
             for (int i = 0; i < size; i++) {
-                Room r(i+1); // Start rooms from 1
-                rooms.push_back(r);
+                Habitacion r(i+1); // Start rooms from 1
+                habitaciones.push_back(r);
             }
         };
 
         int check_in(string guest_name, int adult_count, int child_count, double credit) {
-            for (int i = 0; i < rooms.size(); i++) {
-                Room& r = rooms[i];
+            for (int i = 0; i < habitaciones.size(); i++) {
+                Habitacion& r = habitaciones[i];
 
-                if (r.get_available()) {
+                if (r.get_disponible()) {
                     r.check_in(guest_name, adult_count, child_count, credit);
-                    return r.get_number();
+                    return r.get_numero();
                 }
             }
 
@@ -128,8 +128,8 @@ class Hotel {
 
 
         bool check_out(int number) {
-            if ((int) rooms.size() - number >= 0 && number > 0) {
-                Room& r = rooms[number-1];
+            if ((int) habitaciones.size() - number >= 0 && number > 0) {
+                Habitacion& r = habitaciones[number-1];
 
                 return r.check_out();
             }
@@ -139,11 +139,11 @@ class Hotel {
 
 
 
-        bool make_charge_room(int number, double charge) {
-            if ((int) rooms.size() - number >= 0 && number > 0) {
-                Room& r = rooms[number-1];
+        bool realizar_cargos_habitacion(int number, double charge) {
+            if ((int) habitaciones.size() - number >= 0 && number > 0) {
+                Habitacion& r = habitaciones[number-1];
 
-                return r.make_charge(charge);
+                return r.realizar_cargo(charge);
             }
 
             return false;
@@ -152,8 +152,8 @@ class Hotel {
         int get_total_tarifa_base() {
             int total = 0;
 
-            for (int i = 0; i < rooms.size(); i++) {
-                Room& r = rooms[i];
+            for (int i = 0; i < habitaciones.size(); i++) {
+                Habitacion& r = habitaciones[i];
 
                 total += r.get_tarifa_base();
             }
@@ -162,10 +162,10 @@ class Hotel {
         }
 
         void imprime_ocupacion() {
-            cout << "Ocupacion en el Hotel " << name << endl;
+            cout << "Ocupacion en el Hotel " << nombre << endl;
             
-            for (int i = 0; i < rooms.size(); i++) {
-                cout << rooms[i].to_string() << endl;
+            for (int i = 0; i < habitaciones.size(); i++) {
+                cout << habitaciones[i].to_string() << endl;
             }
         }
 
