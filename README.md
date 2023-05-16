@@ -2,6 +2,10 @@
 
 Simple OOP activity to practice C++.
 
+## Instructions
+
+You can find the instructions [here](./assets/Diagnóstico.pdf)
+
 ## Compiling
 
 To compile the project, run:
