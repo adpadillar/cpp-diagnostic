@@ -11,6 +11,8 @@ int main() {
 
     h.check_in("Axel", 2, 3, 450.23);
     h.check_in("Jorge", 2, 3, 450.23);
+    h.realizar_cargos_habitacion(2, 100);
+    h.realizar_cargos_habitacion(2, 400);
 
     h.imprime_ocupacion();
 

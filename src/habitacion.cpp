@@ -64,10 +64,10 @@ bool Habitacion::check_out() {
 
 bool Habitacion::realizar_cargo(double charge) {
     if (charge > 0) {
-        double new_credit = credito - charge;
+        double new_credit = credito - cargo - charge;
 
         if (new_credit > 0) {
-            credito = new_credit;
+            cargo += charge;
             return true;
         }
 
