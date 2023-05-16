@@ -4,7 +4,7 @@ Simple OOP activity to practice C++.
 
 ## Instructions
 
-You can find the instructions [here](./assets/Diagnóstico.pdf)
+You can find the instructions for this activity [here](./assets/Diagnóstico.pdf)
 
 ## Compiling
 
