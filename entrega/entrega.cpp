@@ -32,7 +32,7 @@ bool Habitacion::get_disponible() {
     return disponible;
 }
 
-Habitacion Habitacion::check_in(string guest_name, int adult_count, int child_count, double credit) {
+Habitacion Habitacion::checkin(string guest_name, int adult_count, int child_count, double credit) {
     this->nombre = guest_name;
     this->adultos = adult_count;
     this->infantes = child_count;
@@ -44,11 +44,11 @@ Habitacion Habitacion::check_in(string guest_name, int adult_count, int child_co
     return *this;
 }
 
-int Habitacion::get_tarifa_base() {
+int Habitacion::getTarifaBase() {
     return (adultos * 450) + (infantes * 150);
 }
 
-bool Habitacion::check_out() {
+bool Habitacion::checkout() {
     if (!disponible) {
         nombre = "";
         adultos = 0;
@@ -64,7 +64,7 @@ bool Habitacion::check_out() {
     return false;
 }
 
-bool Habitacion::realizar_cargo(double charge) {
+bool Habitacion::realizarCargo(double charge) {
     if (charge > 0) {
         double new_credit = credito - cargo - charge;
 
@@ -79,10 +79,10 @@ bool Habitacion::realizar_cargo(double charge) {
     return false;
 }
 
-string Habitacion::to_string() {
+string Habitacion::toString() {
     ostringstream ss;
 
-    ss << numero << ",Huesped:" << nombre << ",Tarifa Base:" << get_tarifa_base() << ",Credito:" << credito << ",Cargos:" << cargo;
+    ss << numero << ",Huesped:" << nombre << ",Tarifa Base:" << getTarifaBase() << ",Credito:" << credito << ",Cargos:" << cargo;
 
     return ss.str();
 }
@@ -98,12 +98,12 @@ Hotel::Hotel(string name) {
     }
 };
 
-int Hotel::check_in(string guest_name, int adult_count, int child_count, double credit) {
+int Hotel::checkin(string guest_name, int adult_count, int child_count, double credit) {
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_disponible()) {
-            r.check_in(guest_name, adult_count, child_count, credit);
+            r.checkin(guest_name, adult_count, child_count, credit);
             return r.get_numero();
         }
     }
@@ -111,48 +111,48 @@ int Hotel::check_in(string guest_name, int adult_count, int child_count, double 
     return -1;
 }
 
-bool Hotel::check_out(int number) {
+bool Hotel::checkout(int number) {
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_numero() == number) {
-            return r.check_out();
+            return r.checkout();
         }
     }
 
     return false;
 }
 
-bool Hotel::realizar_cargos_habitacion(int number, double charge) {
+bool Hotel::realizarCargosHabitacion(int number, double charge) {
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_numero() == number && !r.get_disponible()) {
-            return r.realizar_cargo(charge);
+            return r.realizarCargo(charge);
         }
     }
 
     return false;
 }
 
-int Hotel::get_total_tarifa_base() {
+int Hotel::getTotalXTarifaBase() {
     int total = 0;
 
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
-        total += r.get_tarifa_base();
+        total += r.getTarifaBase();
     }
 
     return total;
 }
 
-void Hotel::imprime_ocupacion() {
+void Hotel::imprimeOcupacion() {
     cout << "Ocupacion en el Hotel " << nombre << endl;
 
     for (int i = 0; i < size; i++) {
         if (!habitaciones[i].get_disponible()) {
-            cout << habitaciones[i].to_string() << endl;
+            cout << habitaciones[i].toString() << endl;
         }
     }
 }
@@ -165,16 +165,16 @@ using namespace std;
 int main() {
     Hotel h("Holiday Inn");
 
-    h.check_in("Axel", 2, 3, 450.23);
-    h.check_in("Jorge", 2, 3, 450.23);
-    h.realizar_cargos_habitacion(101, 100);
-    h.realizar_cargos_habitacion(100, 400);
+    h.checkin("Axel", 2, 3, 450.23);
+    h.checkin("Jorge", 2, 3, 450.23);
+    h.realizarCargosHabitacion(101, 100);
+    h.realizarCargosHabitacion(100, 400);
 
-    h.imprime_ocupacion();
+    h.imprimeOcupacion();
 
-    h.check_out(100);
+    h.checkout(100);
 
-    h.imprime_ocupacion();
+    h.imprimeOcupacion();
 
     return 0;
 };

@@ -19,11 +19,11 @@ class Habitacion {
         Habitacion(int n);
         int get_numero();
         bool get_disponible();
-        Habitacion check_in(std::string guest_name, int adult_count, int child_count, double credit);
-        bool check_out();
-        int get_tarifa_base();
-        bool realizar_cargo(double charge);
-        std::string to_string();
+        Habitacion checkin(std::string guest_name, int adult_count, int child_count, double credit);
+        bool checkout();
+        int getTarifaBase();
+        bool realizarCargo(double charge);
+        std::string toString();
 };
 
 #endif

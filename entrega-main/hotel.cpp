@@ -13,12 +13,12 @@ Hotel::Hotel(string name) {
     }
 };
 
-int Hotel::check_in(string guest_name, int adult_count, int child_count, double credit) {
+int Hotel::checkin(string guest_name, int adult_count, int child_count, double credit) {
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_disponible()) {
-            r.check_in(guest_name, adult_count, child_count, credit);
+            r.checkin(guest_name, adult_count, child_count, credit);
             return r.get_numero();
         }
     }
@@ -26,49 +26,49 @@ int Hotel::check_in(string guest_name, int adult_count, int child_count, double 
     return -1;
 }
 
-bool Hotel::check_out(int number) {
+bool Hotel::checkout(int number) {
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_numero() == number) {
-            return r.check_out();
+            return r.checkout();
         }
     }
 
     return false;
 }
 
-bool Hotel::realizar_cargos_habitacion(int number, double charge) {
+bool Hotel::realizarCargosHabitacion(int number, double charge) {
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
         if (r.get_numero() == number && !r.get_disponible()) {
-            return r.realizar_cargo(charge);
+            return r.realizarCargo(charge);
         }
     }
 
     return false;
 }
 
-int Hotel::get_total_tarifa_base() {
+int Hotel::getTotalXTarifaBase() {
     int total = 0;
 
     for (int i = 0; i < size; i++) {
         Habitacion& r = habitaciones[i];
 
-        total += r.get_tarifa_base();
+        total += r.getTarifaBase();
     }
 
     return total;
 }
 
-void Hotel::imprime_ocupacion() {
+void Hotel::imprimeOcupacion() {
     cout << "Ocupacion en el Hotel " << nombre << endl;
     int busy_count = 0;
 
     for (int i = 0; i < size; i++) {
         if (!habitaciones[i].get_disponible()) {
-            cout << habitaciones[i].to_string() << endl;
+            cout << habitaciones[i].toString() << endl;
             busy_count++;
         }
     }

@@ -30,7 +30,7 @@ bool Habitacion::get_disponible() {
     return disponible;
 }
 
-Habitacion Habitacion::check_in(string guest_name, int adult_count, int child_count, double credit) {
+Habitacion Habitacion::checkin(string guest_name, int adult_count, int child_count, double credit) {
     this->nombre = guest_name;
     this->adultos = adult_count;
     this->infantes = child_count;
@@ -42,11 +42,11 @@ Habitacion Habitacion::check_in(string guest_name, int adult_count, int child_co
     return *this;
 }
 
-int Habitacion::get_tarifa_base() {
+int Habitacion::getTarifaBase() {
     return (adultos * 450) + (infantes * 150);
 }
 
-bool Habitacion::check_out() {
+bool Habitacion::checkout() {
     if (!disponible) {
         nombre = "";
         adultos = 0;
@@ -62,7 +62,7 @@ bool Habitacion::check_out() {
     return false;
 }
 
-bool Habitacion::realizar_cargo(double charge) {
+bool Habitacion::realizarCargo(double charge) {
     if (charge > 0) {
         double new_credit = credito - cargo - charge;
 
@@ -77,10 +77,10 @@ bool Habitacion::realizar_cargo(double charge) {
     return false;
 }
 
-string Habitacion::to_string() {
+string Habitacion::toString() {
     ostringstream ss;
 
-    ss << numero << ",Huesped:" << nombre << ",Tarifa Base:" << get_tarifa_base() << ",Credito:" << credito << ",Cargos:" << cargo;
+    ss << numero << ",Huesped:" << nombre << ",Tarifa Base:" << getTarifaBase() << ",Credito:" << credito << ",Cargos:" << cargo;
 
     return ss.str();
 }

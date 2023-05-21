@@ -41,7 +41,7 @@ int main() {
                         cout << "Ingresa la cantidad de credito: ";
                         cin >> credit;
 
-                        int room_n = h.check_in(name, adults, children, credit);
+                        int room_n = h.checkin(name, adults, children, credit);
 
                         cout <<  "Se asigno la habitacion: " << room_n << endl; 
                         break;
@@ -52,7 +52,7 @@ int main() {
                         cout << "Ingresa el numero de habitacion: ";
                         cin >> room_n;
 
-                        bool success = h.check_out(room_n);
+                        bool success = h.checkout(room_n);
                         string msg = success ? "Check out realizado" : "No se pudo realizar el Check out";
 
                         cout << msg << endl;
@@ -69,7 +69,7 @@ int main() {
                         cout << "Ingresa el cargo: ";
                         cin >> charge;
 
-                        int success = h.realizar_cargos_habitacion(room_n, charge);
+                        int success = h.realizarCargosHabitacion(room_n, charge);
                         string msg = success ? "Cargo realizado" : "No se pudo realizar el cargo";  
 
                         cout << msg << endl;
@@ -77,12 +77,12 @@ int main() {
                     }
 
             case 4: {
-                        cout << "Total tarifa base: " << h.get_total_tarifa_base() << endl;
+                        cout << "Total tarifa base: " << h.getTotalXTarifaBase() << endl;
                         break;
                     }
 
             case 5: {
-                        h.imprime_ocupacion();
+                        h.imprimeOcupacion();
                         break;
                     }
         }
