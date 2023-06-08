@@ -8,7 +8,7 @@ Hotel::Hotel(string name) {
     this->size = 50;
     this->nombre = name;
     for (int i = 0; i < size; i++) {
-        Habitacion r(i + 100);  // Start rooms from 100
+        HabitacionJunior r(i + 100);  // Start rooms from 100
         habitaciones[i] = r;
     }
 };

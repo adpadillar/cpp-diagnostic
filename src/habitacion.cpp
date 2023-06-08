@@ -2,48 +2,12 @@
 
 using namespace std;
 
-Habitacion::Habitacion() {
-    nombre = "";
-    numero = 0;
-    adultos = 0;
-    infantes = 0;
-    credito = 0;
-    cargo = 0;
-    disponible = true;
-}
-
-Habitacion::Habitacion(int n) {
-    nombre = "";
-    numero = n;
-    adultos = 0;
-    infantes = 0;
-    credito = 0;
-    cargo = 0;
-    disponible = true;
-}
-
 int Habitacion::get_numero() {
     return numero;
 }
 
 bool Habitacion::get_disponible() {
     return disponible;
-}
-
-Habitacion Habitacion::checkin(string guest_name, int adult_count, int child_count, double credit) {
-    this->nombre = guest_name;
-    this->adultos = adult_count;
-    this->infantes = child_count;
-    this->credito = credit;
-    this->cargo = 0;
-
-    this->disponible = false;
-
-    return *this;
-}
-
-int Habitacion::getTarifaBase() {
-    return (adultos * 450) + (infantes * 150);
 }
 
 bool Habitacion::checkout() {
@@ -75,12 +39,4 @@ bool Habitacion::realizarCargo(double charge) {
     }
 
     return false;
-}
-
-string Habitacion::toString() {
-    ostringstream ss;
-
-    ss << numero << ",Huesped:" << nombre << ",Tarifa Base:" << getTarifaBase() << ",Credito:" << credito << ",Cargos:" << cargo;
-
-    return ss.str();
 }
