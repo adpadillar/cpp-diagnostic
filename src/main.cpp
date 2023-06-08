@@ -2,7 +2,7 @@
 #include <sstream>
 #include <vector>
 
-#include "hotel.h"
+#include "../include/hotel.h"
 
 using namespace std;
 
