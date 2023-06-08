@@ -1,4 +1,4 @@
-#include "../include/habitacion.h"
+#include "habitacion.h"
 
 using namespace std;
 

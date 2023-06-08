@@ -1,4 +1,4 @@
-#include "../include/hotel.h"
+#include "hotel.h"
 
 #include <iostream>
 
@@ -64,10 +64,16 @@ int Hotel::getTotalXTarifaBase() {
 
 void Hotel::imprimeOcupacion() {
     cout << "Ocupacion en el Hotel " << nombre << endl;
+    int busy_count = 0;
 
     for (int i = 0; i < size; i++) {
         if (!habitaciones[i].get_disponible()) {
             cout << habitaciones[i].toString() << endl;
+            busy_count++;
         }
+    }
+
+    if (busy_count == 0) {
+        cout << "No hay habitaciones ocupadas" << endl;
     }
 }
