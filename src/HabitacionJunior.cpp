@@ -1,27 +1,11 @@
 #include "../include/HabitacionJunior.h"
+#include "../include/habitacion.h"
 
 using namespace std;
 
-HabitacionJunior::HabitacionJunior() {
-    nombre = "";
-    numero = 0;
-    adultos = 0;
-    infantes = 0;
-    credito = 0;
-    cargo = 0;
-    disponible = true;
-}
+HabitacionJunior::HabitacionJunior(): Habitacion() {};
 
-HabitacionJunior::HabitacionJunior(int n) {
-    nombre = "";
-    numero = n;
-    adultos = 0;
-    infantes = 0;
-    credito = 0;
-    cargo = 0;
-    disponible = true;
-}
-
+HabitacionJunior::HabitacionJunior(int n): Habitacion(n) {};
 
 bool HabitacionJunior::checkin(string guest_name, int adult_count, int child_count,double credit) {
     if ((adult_count + child_count) <= 4) {
