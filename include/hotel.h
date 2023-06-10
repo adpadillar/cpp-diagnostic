@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
-#include "HabitacionJunior.h"
+#include "habitacion.h"
 
 class Hotel {
     private:
-        HabitacionJunior habitaciones[50];
+        std::vector<Habitacion> habitaciones;
         int size;
         std::string nombre;
 

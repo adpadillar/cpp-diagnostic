@@ -1,18 +1,17 @@
-#ifndef HABITACION_SUITE_H
-#define HABITACION_SUITE_H
+#ifndef HABITACION_DELUXE_H
+#define HABITACION_DELUXE_H
 
 #include "habitacion.h"
 #include <string>
 
-class HabitacionSuite: public Habitacion {
-    public: 
-        HabitacionSuite();
-        HabitacionSuite(int n);
+class HabitacionDeluxe: public Habitacion {
+    public:
+        HabitacionDeluxe();
+        HabitacionDeluxe(int n);
 
         bool checkin(std::string guest_name, int adult_count, int child_count, double credit);
         int getTarifaBase();
         std::string toString();
 };
 
-#endif // !HABITACION_SUITE_H
-
+#endif // !HABITACION_DELUXE_H

@@ -7,87 +7,60 @@
 using namespace std;
 
 int main() {
-    Hotel h("Holiday Inn");
+    vector<Hotel> hoteles;
 
     int opc;
     do {
-        cout << "0. Salir" << endl;
-        cout << "1. Check in" << endl;
-        cout << "2. Check out" << endl;
-        cout << "3. Realizar cargos" << endl;
-        cout << "4. Total tarifa base" << endl;
-        cout << "5. Imprime ocupacion" << endl;
+        cout << "1. Crear Hotel" << endl;
+        cout << "2. Check in" << endl;
+        cout << "3. Check out" << endl;
+        cout << "4. Realizar cargos" << endl;
+        cout << "5. Total tarifa base" << endl;
+        cout << "6. Imprime ocupacion" << endl;
+        cout << "7. Salir" << endl;
 
         cin >> opc;
 
         switch (opc) {
-            case 0: { break; }
-
             case 1: {
+                        // Crear Hotel
                         string name;
-                        int adults;
-                        int children;
-                        double credit;
-
-                        cout << "Ingresa el nombre del huesped: ";
+                        cout << "Ingresa el nombre del hotel: ";
                         cin >> name;
 
-                        cout << "Ingresa la cantidad de adultos: ";
-                        cin >> adults;
-
-                        cout << "Ingresa la cantidad de niños: ";
-                        cin >> children;
-
-                        cout << "Ingresa la cantidad de credito: ";
-                        cin >> credit;
-
-                        int room_n = h.checkin(name, adults, children, credit);
-
-                        cout <<  "Se asigno la habitacion: " << room_n << endl; 
+                        // hoteles.push_back();
                         break;
                     }
 
             case 2: {
-                        int room_n;
-                        cout << "Ingresa el numero de habitacion: ";
-                        cin >> room_n;
-
-                        bool success = h.checkout(room_n);
-                        string msg = success ? "Check out realizado" : "No se pudo realizar el Check out";
-
-                        cout << msg << endl;
+                        // Check in
                         break;
                     }
 
             case 3: {
-                        int room_n;
-                        double charge;
-
-                        cout << "Ingresa el numero de habitacion: ";
-                        cin >> room_n;
-
-                        cout << "Ingresa el cargo: ";
-                        cin >> charge;
-
-                        int success = h.realizarCargosHabitacion(room_n, charge);
-                        string msg = success ? "Cargo realizado" : "No se pudo realizar el cargo";  
-
-                        cout << msg << endl;
+                        // Check out
                         break;
                     }
 
             case 4: {
-                        cout << "Total tarifa base: " << h.getTotalXTarifaBase() << endl;
+                        // Realizar cargos
                         break;
                     }
 
             case 5: {
-                        h.imprimeOcupacion();
+                        // Total tarifa base
                         break;
                     }
+
+            case 6: {
+                        // Total tarifa base
+                        break;
+                    }
+
+            case 7: { break; }
         }
 
-    } while (opc != 0);
+    } while (opc != 7);
 
     return 0;
 };
