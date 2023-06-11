@@ -23,23 +23,27 @@ int main() {
         switch (opc) {
             case 1: {
                         // Crear Hotel
-                        string name;    
-                        int n_junior, n_suite, n_deluxe;
+                        cout << hoteles.size() << endl;
+                        if (hoteles.size() > 0) {
+                            cout << "Hotel ya se ha creado" << endl;
+                        } else {
+                            string name;    
+                            int n_junior, n_suite, n_deluxe;
 
-                        cout << "Ingresa el nombre del hotel: ";
-                        cin >> name;
+                            cout << "Ingresa el nombre del hotel: ";
+                            cin >> name;
 
-                        cout << "Ingresa la cantidad de habitaciones Junior del hotel: ";
-                        cin >> n_junior;
+                            cout << "Ingresa la cantidad de habitaciones Junior del hotel: ";
+                            cin >> n_junior;
 
-                        cout << "Ingresa la cantidad de habitaciones Suite del hotel: ";
-                        cin >> n_suite;
+                            cout << "Ingresa la cantidad de habitaciones Suite del hotel: ";
+                            cin >> n_suite;
 
-                        cout << "Ingresa la cantidad de habitaciones Deluxe del hotel: ";
-                        cin >> n_deluxe;
+                            cout << "Ingresa la cantidad de habitaciones Deluxe del hotel: ";
+                            cin >> n_deluxe;
 
-                        hoteles.push_back(new Hotel(name, n_junior, n_suite, n_deluxe));
-
+                            hoteles.push_back(new Hotel(name, n_junior, n_suite, n_deluxe));
+                        }
                         break;
                     }
 
