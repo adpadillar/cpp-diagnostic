@@ -33,8 +33,11 @@ int Hotel::checkin(string guest_name, int adult_count, int child_count, double c
             Habitacion* r = habitaciones[i];
 
             if (r->get_disponible()) {
-                r->checkin(guest_name, adult_count, child_count, credit);
-                return r->get_numero();
+                if (r->checkin(guest_name, adult_count, child_count, credit)) {
+                    return r->get_numero();
+                } else {
+                    return -1;
+                }
             }
         }
     }

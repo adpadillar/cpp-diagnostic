@@ -72,10 +72,14 @@ int main() {
                             cout << "Tu seleccion [1, 2, 4]: ";
                             cin >> room_type;
 
-                            int room_n = h->checkin(name, adults, children, credit, room_type);
-                            string msg = room_n != -1 ? "Se asigno la habitación: " + to_string(room_n) : "No se pudo hacer check in";
+                            if ((adults + children) > 8) {
+                                cout << "Nuestro limite de personas por reservacion es 8. Si tienes más personas por favor realiza mas de una reservacion" << endl;
+                            } else {
+                                int room_n = h->checkin(name, adults, children, credit, room_type);
+                                string msg = room_n != -1 ? "Se asigno la habitación: " + to_string(room_n) : "No se pudo hacer check in. Intenta con otro tipo de habitacion";
 
-                            cout <<  msg << endl; 
+                                cout <<  msg << endl; 
+                            }
                         } else {
                             cout << "No hay hoteles registrados" << endl;
                         }
