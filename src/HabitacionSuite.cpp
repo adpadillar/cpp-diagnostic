@@ -1,13 +1,28 @@
 #include "../include/HabitacionSuite.h"
-#include "../include/habitacion.h"
 
 #include <string>
 
 using namespace std;
 
-HabitacionSuite::HabitacionSuite(): Habitacion() {};
+HabitacionSuite::HabitacionSuite() {
+    nombre = "";
+    numero = 0;
+    adultos = 0;
+    infantes = 0;
+    credito = 0;
+    cargo = 0;
+    disponible = true;
+};
 
-HabitacionSuite::HabitacionSuite(int n): Habitacion(n) {};
+HabitacionSuite::HabitacionSuite(int n) {
+    nombre = "";
+    numero = n;
+    adultos = 0;
+    infantes = 0;
+    credito = 0;
+    cargo = 0;
+    disponible = true;
+};
 
 bool HabitacionSuite::checkin(string guest_name, int adult_count, int child_count,double credit) {
     if ((adult_count + child_count) <= 6) {
@@ -36,3 +51,4 @@ string HabitacionSuite::toString() {
 
     return ss.str();
 }
+

@@ -2,26 +2,6 @@
 
 using namespace std;
 
-Habitacion::Habitacion() {
-    nombre = "";
-    numero = 0;
-    adultos = 0;
-    infantes = 0;
-    credito = 0;
-    cargo = 0;
-    disponible = true;
-}
-
-Habitacion::Habitacion(int n) {
-    nombre = "";
-    numero = n;
-    adultos = 0;
-    infantes = 0;
-    credito = 0;
-    cargo = 0;
-    disponible = true;
-}
-
 int Habitacion::get_numero() {
     return numero;
 }

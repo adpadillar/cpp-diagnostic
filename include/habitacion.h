@@ -15,9 +15,6 @@ class Habitacion {
         double cargo;
 
     public:
-        Habitacion();
-        Habitacion(int n);
-
         int get_numero();
         bool get_disponible();
         bool checkout();

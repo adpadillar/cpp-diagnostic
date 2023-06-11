@@ -1,13 +1,28 @@
 #include "../include/HabitacionDeluxe.h"
-#include "../include/habitacion.h"
 
 #include <string>
 
 using namespace std;
 
-HabitacionDeluxe::HabitacionDeluxe(): Habitacion() {};
+HabitacionDeluxe::HabitacionDeluxe() {
+    nombre = "";
+    numero = 0;
+    adultos = 0;
+    infantes = 0;
+    credito = 0;
+    cargo = 0;
+    disponible = true;
+};
 
-HabitacionDeluxe::HabitacionDeluxe(int n): Habitacion(n) {};
+HabitacionDeluxe::HabitacionDeluxe(int n) {
+    nombre = "";
+    numero = n;
+    adultos = 0;
+    infantes = 0;
+    credito = 0;
+    cargo = 0;
+    disponible = true;
+};
 
 bool HabitacionDeluxe::checkin(string guest_name, int adult_count, int child_count,double credit) {
     if ((adult_count + child_count) <= 8) {
